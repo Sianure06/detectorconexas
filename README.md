@@ -114,8 +114,9 @@ DetConv es una aplicación interactiva desarrollada en Java para la visualizaci�
 •   Limpiar Grafo: Reinicia el grafo actual.
 •   Información: Muestra ayuda y créditos.
 
-## Estructura de Datos
+## 🔩Estructura de Datos
 
+```text
 src/
 ├── model/
 │   ├── Grafo.java                 # Clase abstracta base
@@ -145,6 +146,10 @@ src/
     └── icons/
         ├── Icon.png                 # Icono principal
         └── image.png                 # Imagen del título
+
+```
+
+---
 
 ## 🧩 Patrones de Diseño Implementados
 
