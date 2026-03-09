@@ -66,6 +66,8 @@ DetConv es una aplicación interactiva desarrollada en Java para la visualizaci�
     -Cálculo de distancia punto-línea para detección de aristas
 
 ### 🖼️ Pantallas
+<img width="1566" height="884" alt="image" src="https://github.com/user-attachments/assets/108e2560-5788-475b-9ff1-fe8b6eb5b12a" />
+<img width="1566" height="884" alt="image" src="https://github.com/user-attachments/assets/b3f088e5-a3d5-471c-beaa-b69ebf55fb4f" />
 
 ### ⚙️Requisitos del Sistema
 
