@@ -1,6 +1,6 @@
-# 🔍DetConv v2.0 - Detector de Componentes Conexas
+# 🔍DetConv v2.0 - Detector de Componentes Conexas mediante DFS
 
-DetConv es una aplicación interactiva desarrollada en Java para la visualización, edición y análisis de grafos, tanto dirigidos como no dirigidos. Permite construir grafos de manera intuitiva mediante clics, detectar componentes conexas, calcular grados y exportar resultados para su posterior análisis.
+DetConv es una aplicación interactiva desarrollada en Java para la visualización, edición y análisis de grafos, tanto dirigidos como no dirigidos. Permite construir grafos de manera intuitiva mediante clics, detectar componentes conexas mediante DFS y algoritmo Kosaraju, calcular grados y exportar resultados para su posterior análisis.
 
 ## 🕹️Funcionalidades Principales
 

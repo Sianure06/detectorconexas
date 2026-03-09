@@ -3,7 +3,6 @@ package src.controlador;
 import java.awt.Point;
 import java.io.*;
 import java.util.*;
-
 import src.model.Grafo;
 import src.model.GrafoDirigido;
 import src.model.GrafoNoDirigido;
@@ -203,14 +202,27 @@ public class GrafoPersistence {
                 String[] partes = linea.split(":");
                 int valorNodo = Integer.parseInt(partes[0]);
                 grafo.insertarNodo(valorNodo);
+            }
+        }
+
+        // SEGUNDA PASADA: agregar todas las aristas sin filtrar
+        try (BufferedReader reader = new BufferedReader(new FileReader(CARPETA_SAVES + nombre + ".txt"))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                if (linea.trim().isEmpty()) {
+                    continue;
+                }
+
+                String[] partes = linea.split(":");
+                int valorNodo = Integer.parseInt(partes[0]);
 
                 if (partes.length > 1 && !partes[1].isEmpty()) {
                     String[] adyacentes = partes[1].split(",");
                     for (String adj : adyacentes) {
                         int vecino = Integer.parseInt(adj);
-                        if (esDirigido || vecino > valorNodo) {
-                            grafo.agregarArista(valorNodo, vecino);
-                        }
+                        // En NO dirigidos: agregar todas las aristas (el modelo ya maneja la bidireccionalidad)
+                        // En dirigidos: agregar todas también
+                        grafo.agregarArista(valorNodo, vecino);
                     }
                 }
             }

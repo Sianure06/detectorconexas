@@ -160,7 +160,7 @@ public class VentanaPrincipal extends JFrame {
         panel.setBackground(new Color(214, 66, 66));
         panel.setPreferredSize(new Dimension(panel.getWidth(), 75));
 
-        JLabel lblTitulo = new JLabel("DetConv- Detector de Componentes Conexas", crearIconoTitulo(), JLabel.LEFT);
+        JLabel lblTitulo = new JLabel("DetConv- Detector de Componentes Conexas mediante DFS", crearIconoTitulo(), JLabel.LEFT);
         lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 28));
         lblTitulo.setForeground(Color.WHITE);
 
@@ -294,13 +294,30 @@ public class VentanaPrincipal extends JFrame {
     }
 
     private void detectarComponentes() {
-        Map<Integer, Integer> componentes = grafo.componentesConexas();
+        if (grafo.contarNodos() == 0) {
+            actualizarResultados("El grafo está vacío");
+            return;
+        }
+
+        Map<Integer, Integer> componentes;
+
+        //Verificar el tipo de grafo
+        if (grafo instanceof GrafoDirigido) {
+            // Usar Kosaraju para dirigidos
+            GrafoDirigido gd = (GrafoDirigido) grafo;
+            componentes = gd.componentesFuertementeConexas();
+            actualizarResultados("=== COMPONENTES FUERTEMENTE CONEXAS (Kosaraju) ===\n");
+        } else {
+            // Usar DFS simple para no dirigidos
+            componentes = grafo.componentesConexas();
+            actualizarResultados("=== COMPONENTES CONEXAS (DFS) ===\n");
+        }
+
         int cantidad = componentes.values().stream()
                 .mapToInt(Integer::intValue)
                 .max().orElse(-1) + 1;
 
         StringBuilder sb = new StringBuilder();
-        sb.append("=== COMPONENTES CONEXAS ===\n");
         sb.append("Total: ").append(cantidad).append("\n\n");
 
         // Agrupar por componente
@@ -336,7 +353,7 @@ public class VentanaPrincipal extends JFrame {
 
     private void mostrarInformacion() {
         JOptionPane.showMessageDialog(this,
-                "Detector de Componentes Conexas (DetConv)\n"
+                "Detector de Componentes Conexas mediante DFS (DetConv)\n"
                 + "Versión 2.0\n\n"
                 + "INSTRUCCIONES:\n"
                 + "1. 'Agregar Nodos': Haz clic en el panel para crear nodos\n"
@@ -551,7 +568,7 @@ private void exportarResultados() {
         actualizarResultados("Cambiado a grafo " + (dirigido ? "DIRIGIDO" : "NO DIRIGIDO"));
     }
 
-// Modificar el método calcularGrado para mostrar información específica
+//Calcula el grado del nodo
     private void calcularGrado() {
         if (grafo.contarNodos() == 0) {
             actualizarResultados("El grafo está vacío");
